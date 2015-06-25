@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  min_grade: MyString
+  hours: 1
+  take: 1
+  type: 
+
+two:
+  name: MyString
+  min_grade: MyString
+  hours: 1
+  take: 1
+  type: 

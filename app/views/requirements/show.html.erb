@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @requirement.name %>
+</p>
+
+<p>
+  <strong>Min grade:</strong>
+  <%= @requirement.min_grade %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @requirement.hours %>
+</p>
+
+<p>
+  <strong>Take:</strong>
+  <%= @requirement.take %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @requirement.type %>
+</p>
+
+<%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<%= link_to 'Back', requirements_path %>
