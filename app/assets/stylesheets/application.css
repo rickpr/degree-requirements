@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap/dist/css/bootstrap
+ *= require metisMenu/dist/metisMenu
+ *= require startbootstrap-sb-admin-2/dist/css/sb-admin-2
+ *= require font-awesome/css/font-awesome
+ *= require select2
+ *= require select2-bootstrap
  */

@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <strong>Min grade:</strong>
+  <strong>Minimum grade:</strong>
   <%= @requirement.min_grade %>
 </p>
 
@@ -24,6 +24,15 @@
   <strong>Type:</strong>
   <%= @requirement.type %>
 </p>
+
+This requirement requires the following:
+<table class="table table-striped">
+  <% @requirement.children.each do |subrequirement| %>
+    <tr>
+      <td><%= link_to subrequirement.name, subrequirement %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_requirement_path(@requirement) %> |
 <%= link_to 'Back', requirements_path %>

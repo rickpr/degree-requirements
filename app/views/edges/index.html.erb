@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Edges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @edges.each do |edge| %>
+      <tr>
+        <td><%= link_to edge.child.name, edge.child %></td>
+        <td><%= link_to 'Show', requirement_edge_path(id: edge.id) %></td>
+        <td><%= link_to 'Edit', edit_requirement_edge_path(id: edge.id) %></td>
+        <td><%= link_to 'Destroy', requirement_edge_path(id: edge.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate @edges %>
+
+<%= link_to 'New Edge', new_requirement_edge_path %>

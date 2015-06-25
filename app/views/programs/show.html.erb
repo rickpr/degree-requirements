@@ -5,5 +5,23 @@
   <%= @program.name %>
 </p>
 
+<p>
+  <strong>Hours:</strong>
+  <%= @program.hours %>
+</p>
+
+<p>
+  <strong>Global Minimum Grade:</strong>
+  <%= @program.min_grade %>
+  </p>
+
+This program requires the following:
+<table class="table table-striped">
+  <% @program.children.each do |requirement| %>
+    <tr>
+      <td><%= link_to requirement.name, requirement %></td>
+    </tr>
+  <% end %>
+</table>
 <%= link_to 'Edit', edit_program_path(@program) %> |
 <%= link_to 'Back', programs_path %>

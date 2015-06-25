@@ -44,4 +44,7 @@ group :development, :test do
 end
 
 gem 'bower-rails'
+gem 'bootstrap_form'
 gem 'kaminari'
+gem 'd3-rails'
+gem 'select2-rails'
