@@ -18,7 +18,7 @@ class ProgramsControllerTest < ActionController::TestCase
 
   test "should create program" do
     assert_difference('Program.count') do
-      post :create, program: { name: @program.name, requirement_id: @program.requirement_id }
+      post :create, program: {  }
     end
 
     assert_redirected_to program_path(assigns(:program))
@@ -35,7 +35,7 @@ class ProgramsControllerTest < ActionController::TestCase
   end
 
   test "should update program" do
-    patch :update, id: @program, program: { name: @program.name, requirement_id: @program.requirement_id }
+    patch :update, id: @program, program: {  }
     assert_redirected_to program_path(assigns(:program))
   end
 

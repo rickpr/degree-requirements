@@ -32,10 +32,16 @@ courses = course_files.flat_map &from_json
 
 # Requirements Files
 
-files = Dir.glob('requirements/*') 
+requirements_files = Dir.glob('requirements/*') 
 
-big_requirements = files.map { |file| File.basename(file, ".*").titleize }
-requirements     = files.map &from_json 
+big_requirements = requirements_files.map { |file| File.basename(file, ".*").titleize }
+requirements     = requirements_files.map &from_json 
+
+# Programs Files
+programs_files = Dir.glob('programs/*')
+
+program_titles = programs_files.map { |file| File.basename(file, ".*").titleize }
+programs       = programs_files.map &from_json
 
 # Edges files
 
@@ -51,9 +57,10 @@ ActiveRecord::Base.transaction do
 
   # Add the upper nodes
   big_nodes = big_requirements.map { |big_node| Requirement.create(name: big_node) } 
+  big_nodes += program_titles.map { |big_node| Program.create(name: big_node) }
 
   # Add the lower nodes and link them to courses
-  nodes = requirements.map { |big_node| big_node.map &add_requirement }
+  nodes = (requirements + programs).map { |big_node| big_node.map &add_requirement }
 
   # Link the upper nodes to the lower nodes
   big_nodes.zip(nodes).each &add_link

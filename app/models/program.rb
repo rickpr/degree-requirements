@@ -1,3 +1,2 @@
-class Program < ActiveRecord::Base
-  belongs_to :requirement
+class Program < Requirement
 end

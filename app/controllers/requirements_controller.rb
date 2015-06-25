@@ -4,7 +4,7 @@ class RequirementsController < ApplicationController
   # GET /requirements
   # GET /requirements.json
   def index
-    @requirements = Requirement.page(params[:page])
+    @requirements = Requirement.where(type: nil).page(params[:page])
   end
 
   # GET /requirements/1

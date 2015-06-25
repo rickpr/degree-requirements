@@ -23,15 +23,6 @@ ActiveRecord::Schema.define(version: 20150624224201) do
   add_index "edges", ["child_id"], name: "index_edges_on_child_id"
   add_index "edges", ["parent_id"], name: "index_edges_on_parent_id"
 
-  create_table "programs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "requirement_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "programs", ["requirement_id"], name: "index_programs_on_requirement_id"
-
   create_table "requirements", force: :cascade do |t|
     t.string   "name"
     t.string   "min_grade"
