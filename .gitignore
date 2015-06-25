@@ -15,3 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore vim swapfiles
+*.swp
+
+# Ignore env file
+*.env
