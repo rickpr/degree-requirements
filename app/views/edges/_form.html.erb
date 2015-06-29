@@ -1,8 +1,6 @@
-<%= bootstrap_form_for(@edge) do |f| %>
-    <% opter = proc { |x| [x.name, x.id] } %>
-    <%= f.select :parent, options_for_select(Requirement.where(type: nil).map(&opter)) %>
-    <%= f.select :child, options_for_select(Requirement.all.map(&opter)) %>
-    <%= f.submit %>
+<%= bootstrap_form_for([@requirement, @edge]) do |f| %>
+  <%= f.select :child_id, options_for_select(Requirement.all.map { |req| [req.name, req.id] }), label: 'Subrequirement' %>
+<%= f.submit %>
 <% end %>
 
 <script>

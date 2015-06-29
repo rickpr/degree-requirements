@@ -1,10 +1,11 @@
 class EdgesController < ApplicationController
   before_action :set_edge, only: [:show, :edit, :update, :destroy]
+  before_action :set_requirement, only: [:new, :create, :index]
 
   # GET /edges
   # GET /edges.json
   def index
-    @edges = Requirement.find(params[:requirement_id]).child_edges.page(params[:page])
+    @edges = @requirement.child_edges.page(params[:page])
   end
 
   # GET /edges/1
@@ -14,7 +15,7 @@ class EdgesController < ApplicationController
 
   # GET /edges/new
   def new
-    @edge = Requirement.find(params[:requirement_id]).new
+    @edge = Requirement.find(params[:requirement_id]).child_edges.new
   end
 
   # GET /edges/1/edit
@@ -24,12 +25,12 @@ class EdgesController < ApplicationController
   # POST /edges
   # POST /edges.json
   def create
-    @edge = Edge.new(edge_params)
+    @edge = @requirement.child_edges.new(edge_params)
 
     respond_to do |format|
       if @edge.save
-        format.html { redirect_to @edge, notice: 'Edge was successfully created.' }
-        format.json { render :show, status: :created, location: @edge }
+        format.html { redirect_to @requirement, notice: 'Edge was successfully created.' }
+        format.json { render :show, status: :created, location: @requirement }
       else
         format.html { render :new }
         format.json { render json: @edge.errors, status: :unprocessable_entity }
@@ -42,8 +43,8 @@ class EdgesController < ApplicationController
   def update
     respond_to do |format|
       if @edge.update(edge_params)
-        format.html { redirect_to @edge, notice: 'Edge was successfully updated.' }
-        format.json { render :show, status: :ok, location: @edge }
+        format.html { redirect_to @requirement, notice: 'Edge was successfully updated.' }
+        format.json { render :show, status: :ok, location: @requirement }
       else
         format.html { render :edit }
         format.json { render json: @edge.errors, status: :unprocessable_entity }
@@ -64,8 +65,16 @@ class EdgesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_edge
-      @edge = Edge.find(params[:id])
+      set_requirement
+      @edge = @requirement.child_edges.find(params[:id])
     end
+
+    def set_requirement
+      @requirement = Requirement.find(params[:requirement_id])
+      # Polymorphism
+      @requirement ||= Program.find(params[:program_id])
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def edge_params
