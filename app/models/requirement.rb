@@ -1,6 +1,6 @@
 class Requirement < ActiveRecord::Base
-  has_many :parent_edges, class_name: 'Edge', foreign_key: 'child_id'
-  has_many :child_edges, class_name: 'Edge', foreign_key: 'parent_id'
+  has_many :parent_edges, class_name: 'Edge', foreign_key: 'child_id', dependent: :destroy
+  has_many :child_edges, class_name: 'Edge', foreign_key: 'parent_id', dependent: :destroy
   has_many :children, through: :child_edges
   has_many :parents, through: :parent_edges
   validates :name, presence: true
