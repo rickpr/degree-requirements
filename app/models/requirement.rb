@@ -17,4 +17,23 @@ class Requirement < ActiveRecord::Base
     }
   end
 
+  def satisfy(student_set)
+    if children.map(&:children).flatten.all? { |item| item.is_a? Course }
+    end
+  end
+
+  def uplus(requirement)
+    as, bs = uplus_child, requirement.uplus_child
+    c =  (as & bs).map(&:hours).reduce(:+).to_i
+    a = [(as - bs).map(&:hours).reduce(:+).to_i, hours].min
+    b = [(bs - as).map(&:hours).reduce(:+).to_i, hours].min
+    result = Requirement.new(hours: [a + b + c, hours + requirement.hours].min)
+    result.uplus_child(as & bs)
+    result
+  end
+
+  def uplus_child(x = nil)
+    (@uplus_child ||= x) || children
+  end
+
 end
