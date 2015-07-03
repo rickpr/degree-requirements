@@ -1,6 +1,6 @@
 <%= bootstrap_form_for([@requirement, @edge]) do |f| %>
   <%= f.select :child_id, options_for_select(Requirement.all.map { |req| [req.name, req.id] }), label: 'Subrequirement' %>
-<%= f.submit %>
+  <%= f.primary "Add subrequirement" %>
 <% end %>
 
 <script>
